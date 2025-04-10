@@ -4,6 +4,16 @@ def adicionar_contato(nome_contato, telefone, email, favorito, contatos):
     print(f"\nContato {nome_contato} adiconado com sucesso!")
     return
 
+def listar_contatos():
+    print("Lista de Contatos: ")
+    
+    for i, contato in enumerate(contatos):
+        nome_contato = contato["nome"]
+        telefone = contato["telefone"]
+        email = contato["email"]        
+        print(f"{i}. Nome: {nome_contato:<50} | Telefone: {telefone:<15} | Email: {email:<30}")
+    return
+
 contatos = []
 
 while True:
@@ -24,6 +34,9 @@ while True:
         email = input("Digite o email do contato: ")
         adicionar_contato(nome_contato, telefone, email, False, contatos)
     
+    elif escolha == "2":
+        listar_contatos()
+
     elif escolha == "7":
         break
     
