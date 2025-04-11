@@ -11,7 +11,7 @@ def listar_contatos():
         nome_contato = contato["nome"]
         telefone = contato["telefone"]
         email = contato["email"]        
-        favorito = "*" if contato["favorito"] else ""
+        favorito = "*" if contato["favorito"] else " "        
         print(f"{i}. Nome: {nome_contato:<20} | Telefone: {telefone:<15} | Email: {email:<10} | Favorito: {favorito}")
     return
 
@@ -25,6 +25,14 @@ def atualizar_contato(indice_contato, nome_contato, telefone, email, contatos):
     print(f"Contato {indice_contato} atualizado!")
     return
 
+def marcar_desmarcar_favorito(indice_contato, contatos):
+    indice_ajustado = int(indice_contato) - 1
+    contatos[indice_ajustado] ["favorito"] = not contatos[indice_ajustado] ["favorito"]
+        
+    print(f"Contato {indice_contato} alterado!")
+    
+    return
+
 contatos = []
 
 while True:
@@ -32,7 +40,7 @@ while True:
     print("1. Adicionar Novo Contato")
     print("2. Mostrar Lista de Contatos")
     print("3. Editar Contato")
-    print("4. Marcar Contato como Favorito")
+    print("4. Marcar Ou Desmarcar Contato como Favorito")
     print("5. Mostrar Lista de Contatos Favoritos")
     print("6. Apagar Contato")
     print("7. Sair")
@@ -61,7 +69,17 @@ while True:
 
             atualizar_contato(indice_contato, nome_contato, telefone, email, contatos)
         else:            
-            print("\nIndice de Contato inválido!")
+            print("\nÍndice de Contato inválido!")
+
+    elif escolha == "4":
+        listar_contatos()
+        indice_contato = input("Digite o indice do contato a ser marcado/desmarcado como favorito: ")
+        indice_ajustado = int(indice_contato) - 1        
+
+        if indice_ajustado >= 0 and indice_ajustado < len(contatos):
+            marcar_desmarcar_favorito(indice_contato, contatos)            
+        else:            
+            print("\nÍndice de Contato inválido!")
 
     elif escolha == "7":
         break
