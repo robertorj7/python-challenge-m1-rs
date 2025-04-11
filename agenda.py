@@ -11,7 +11,8 @@ def listar_contatos():
         nome_contato = contato["nome"]
         telefone = contato["telefone"]
         email = contato["email"]        
-        print(f"{i}. Nome: {nome_contato:<50} | Telefone: {telefone:<15} | Email: {email:<30}")
+        favorito = "*" if contato["favorito"] else ""
+        print(f"{i}. Nome: {nome_contato:<30} | Telefone: {telefone:<15} | Email: {email:<30} | Favorito: {favorito}")
     return
 
 contatos = []
