@@ -46,6 +46,13 @@ def listar_contatos_favoritos():
             print(f"{i}. Nome: {nome_contato:<20} | Telefone: {telefone:<15} | Email: {email:<10} | Favorito: {favorito}")
     return
 
+def apagar_contato(indice_contato, contatos):
+    indice_ajustado = int(indice_contato) - 1
+    contatos.pop(indice_ajustado)
+    
+    print(f"Contato {indice_contato} apagado!")
+    return
+
 contatos = []
 
 while True:
@@ -96,6 +103,15 @@ while True:
 
     elif escolha == "5":
         listar_contatos_favoritos()
+
+    elif escolha == "6":
+        indice_contato = input("Digite o indice do contato a ser apagado: ")
+        indice_ajustado = int(indice_contato) - 1
+
+        if indice_ajustado >= 0 and indice_ajustado < len(contatos):
+            apagar_contato(indice_contato, contatos)
+        else:            
+            print("\nÍndice de Contato inválido!")
 
     elif escolha == "7":
         break
