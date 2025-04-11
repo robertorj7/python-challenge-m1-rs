@@ -33,6 +33,19 @@ def marcar_desmarcar_favorito(indice_contato, contatos):
     
     return
 
+def listar_contatos_favoritos():
+    print("\nLista de Contatos Favoritos: ")
+    
+    for i, contato in enumerate(contatos, start=1):
+        nome_contato = contato["nome"]
+        telefone = contato["telefone"]
+        email = contato["email"]        
+        favorito = "*" if contato["favorito"] else " "        
+        
+        if contato["favorito"]: 
+            print(f"{i}. Nome: {nome_contato:<20} | Telefone: {telefone:<15} | Email: {email:<10} | Favorito: {favorito}")
+    return
+
 contatos = []
 
 while True:
@@ -80,6 +93,9 @@ while True:
             marcar_desmarcar_favorito(indice_contato, contatos)            
         else:            
             print("\nÍndice de Contato inválido!")
+
+    elif escolha == "5":
+        listar_contatos_favoritos()
 
     elif escolha == "7":
         break
