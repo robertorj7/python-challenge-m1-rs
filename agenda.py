@@ -5,14 +5,24 @@ def adicionar_contato(nome_contato, telefone, email, favorito, contatos):
     return
 
 def listar_contatos():
-    print("Lista de Contatos: ")
+    print("\nLista de Contatos: ")
     
-    for i, contato in enumerate(contatos):
+    for i, contato in enumerate(contatos, start=1):
         nome_contato = contato["nome"]
         telefone = contato["telefone"]
         email = contato["email"]        
         favorito = "*" if contato["favorito"] else ""
-        print(f"{i}. Nome: {nome_contato:<30} | Telefone: {telefone:<15} | Email: {email:<30} | Favorito: {favorito}")
+        print(f"{i}. Nome: {nome_contato:<20} | Telefone: {telefone:<15} | Email: {email:<10} | Favorito: {favorito}")
+    return
+
+def atualizar_contato(indice_contato, nome_contato, telefone, email, contatos):
+    indice_ajustado = int(indice_contato) - 1
+    
+    contatos[indice_ajustado] ["nome"] = nome_contato
+    contatos[indice_ajustado] ["telefone"] = telefone
+    contatos[indice_ajustado] ["email"] = email
+
+    print(f"Contato {indice_contato} atualizado!")
     return
 
 contatos = []
@@ -37,8 +47,23 @@ while True:
     
     elif escolha == "2":
         listar_contatos()
+    
+    elif escolha == "3":
+        listar_contatos()
+        indice_contato = input("Digite o indice do contato a ser atualizado: ")
+        indice_ajustado = int(indice_contato) - 1
+        
+        if indice_ajustado >= 0 and indice_ajustado < len(contatos):
+            print("Digite as informações a serem atualizadas: ")
+            nome_contato = input("Nome: ")
+            telefone = input("Telefone: ")
+            email = input("Email: ")
+
+            atualizar_contato(indice_contato, nome_contato, telefone, email, contatos)
+        else:            
+            print("\nIndice de Contato inválido!")
 
     elif escolha == "7":
         break
     
-print("Programa Finalizado!")
+print("\nPrograma Finalizado!")
